@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: erxes-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: erxes-api
+  template:
+    metadata:
+      labels:
+        component: erxes-api
+    spec:
+      containers:
+      - name: erxes
+        image: erxes/erxes-api:0.9.17
+        ports:
+        - name: http
+          containerPort: 3300
+        envFrom:
+        - configMapRef:
+            name: erxes-api-env
+        - secretRef:
+            name: erxes-api-env
+        env:
+        - name: DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: MAIN_API_DOMAIN

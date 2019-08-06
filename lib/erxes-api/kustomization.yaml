@@ -1,0 +1,11 @@
+bases:
+- ../mongodb
+- ../redis
+resources:
+- erxes-api-deployment.yaml
+- erxes-api-env-configmap.yaml
+- erxes-api-service.yaml
+- erxes-api-init-project-job.yaml
+- erxes-widgets-api-env-configmap.yaml
+- erxes-widgets-api-deployment.yaml
+- erxes-widgets-api-service.yaml

@@ -1,0 +1,143 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: erxes-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: erxes-web
+  template:
+    metadata:
+      labels:
+        component: erxes-web
+    spec:
+      containers:
+      - name: erxes
+        image: erxes/erxes:0.9.17
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: erxes-web-env
+        env:
+        - name: REACT_APP_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: MAIN_API_DOMAIN
+        - name: REACT_APP_API_SUBSCRIPTION_URL
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: MAIN_API_SUBSCRIPTIONS_URL
+        - name: REACT_APP_CDN_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: MAIN_APP_DOMAIN
+
+        # {{ if .Values.erxes.AWS_SES_ACCESS_KEY_ID }}
+        # - name: AWS_SES_ACCESS_KEY_ID
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_SES_ACCESS_KEY_ID
+        # {{ end }}
+        # {{ if .Values.erxes.AWS_SES_SECRET_ACCESS_KEY }}
+        # - name: AWS_SES_SECRET_ACCESS_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_SES_SECRET_ACCESS_KEY
+        # {{ end }}
+        # - name: AWS_REGION
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_REGION
+        # - name: AWS_SES_CONFIG_SET
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_SES_CONFIG_SET
+        # {{ if .Values.erxes.AWS_ENDPOINT }}
+        # - name: AWS_ENDPOINT
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_ENDPOINT
+        # {{ end }}
+        # {{ if .Values.erxes.AWS_BUCKET }}
+        # - name: AWS_BUCKET
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_BUCKET
+        # {{ end }}
+        # {{ if .Values.erxes.AWS_PREFIX }}
+        # - name: AWS_PREFIX
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: AWS_PREFIX
+        # {{ end }}
+
+        # - name: FACEBOOK_APP_ID
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-facebook-appId
+        # - name: FACEBOOK_APP_SECRET
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-facebook-appSecret
+
+        # - name: TWITTER_CONSUMER_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-twitter-consumerKey
+        # - name: TWITTER_CONSUMER_SECRET
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-twitter-consumerSecret
+        # - name: TWITTER_REDIRECT_URL
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-twitter-redirectUrl
+
+        # - name: GOOGLE_CLIENT_ID
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-google-clientId
+        # - name: GOOGLE_CLIENT_SECRET
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-google-clientSecret
+        # - name: GOOGLE_TOPIC
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-google-topic
+        # - name: GOOGLE_SUBSCRIPTION_NAME
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-google-subscriptionName
+        # - name: GOOGLE_APPLICATION_CREDENTIALS
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-google-applicationCredentials
+
+        # - name: GMAIL_REDIRECT_URL
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: {{ template "erxes.fullname" . }}
+        #       key: erxes-gmail-redirectUrl

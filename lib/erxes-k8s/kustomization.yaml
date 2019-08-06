@@ -1,0 +1,5 @@
+bases:
+- ../erxes-common
+- ../erxes-api
+- ../erxes-web
+- ../erxes-router

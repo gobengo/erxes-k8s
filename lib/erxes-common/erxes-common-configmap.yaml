@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: erxes-common
+data:
+  MAIN_API_DOMAIN: http://localhost:32402/api
+  MAIN_API_SUBSCRIPTIONS_URL: ws://localhost:32402/api/subscriptions
+  MAIN_APP_DOMAIN: http://localhost:32402

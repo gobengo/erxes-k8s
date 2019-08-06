@@ -1,0 +1,9 @@
+resources:
+- erxes-router-env-configmap.yaml
+- erxes-router-deployment.yaml
+- erxes-router-service.yaml
+
+configMapGenerator:
+- name: erxes-router-files
+  files:
+  - erxes-router.nginx.conf.template

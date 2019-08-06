@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erxes-router
+spec:
+  selector:
+    matchLabels:
+      component: erxes-router
+  template:
+    metadata:
+      labels:
+        component: erxes-router
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        command: ["/bin/bash"]
+        args:
+        - -c
+        - "envsubst '$SERVER_NAME' < /etc/nginx/conf.d/erxes-router.nginx.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+        envFrom:
+        - configMapRef:
+            name: erxes-router-env
+        volumeMounts:
+        - name: erxes-router-files
+          subPath: erxes-router.nginx.conf.template
+          mountPath: /etc/nginx/conf.d/erxes-router.nginx.conf.template
+      volumes:
+      - name: erxes-router-files
+        configMap:
+          name: erxes-router-files

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: erxes-widgets-api-env
+data:
+  DEBUG: "erxes-widgets-api:*"
+  # MONGO_URL: # See erxes-api-env secret
+  NODE_ENV: production
+  PORT: "3300"
+  REDIS_HOST: redis-master
+  REDIS_PORT: "6379"
+  # REDIS_PASSWORD: # see erxes-api-env secret
