@@ -2,3 +2,6 @@ resources:
 - erxes-common-configmap.yaml
 - erxes-common-env-secret.yaml
 - erxes-common-env-configmap.yaml
+
+configurations:
+- kustomizeconfig/erxes-host-var.yaml

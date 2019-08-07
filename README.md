@@ -50,6 +50,6 @@ open http://localhost:32402 # This may open a web browser, e.g. on a mac, or it 
 
 You can (and probably should) use this as a [base](https://github.com/kubernetes-sigs/kustomize/blob/master/docs/glossary.md#base) to build on top of, [kustomizing](https://kustomize.io/) to meet your needs.
 
-* You definitely will need to ammend the [erxes-common ConfigMap](./lib/erxes-common/erxes-common-configmap.yaml) to mention the right hostname for your deployment.
-  * I [filed this issue](https://github.com/erxes/erxes/issues/1152) with erxes to discuss allowing some of these values to support relative URLs, but this configuration will always be required for things like erxes email notifications to be able to link back to the running web app.
+* You definitely will need to provide the right hostname at which you plan to access your Erxes deployment. You do this by using kustomize configMapGenerator to override the `ERXES_HOST` var in the ConfigMap named `parameters`. There is an example of how to do this in [./lib/test-override-host](./lib/test-override-host/kustomization.yaml)
+  * I [filed this issue](https://github.com/erxes/erxes/issues/1152) with erxes to discuss allowing some of these values to support relative URLs so that deployments using this recipe work a little bit better without this parameters. However, this configuration will always be required for things like erxes email notifications to be able to link back to the running web app.
 * The included [redis](./lib/redis) and [mongodb](./lib/mongodb) definitions are pretty basic. You may want to configure those or bring your own.

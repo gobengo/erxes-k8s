@@ -1,0 +1,7 @@
+bases:
+- ../erxes-k8s
+
+configMapGenerator:
+- name: parameters
+  behavior: merge
+  env: parameters.env
