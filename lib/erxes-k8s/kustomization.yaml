@@ -5,3 +5,17 @@ bases:
 - ../erxes-router
 - ../erxes-widgets
 - ../erxes-integrations
+
+vars:
+- name: ERXES_HOST
+  objref:
+    kind: ConfigMap
+    name: parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.ERXES_HOST
+
+configMapGenerator:
+- name: parameters
+  literals:
+  - ERXES_HOST=localhost:32402
