@@ -3,3 +3,5 @@ bases:
 - ../erxes-api
 - ../erxes-web
 - ../erxes-router
+- ../erxes-widgets
+- ../erxes-integrations

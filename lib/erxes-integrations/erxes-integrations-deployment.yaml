@@ -1,43 +1,42 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: erxes-web
+  name: erxes-integrations
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: erxes-web
+      component: erxes-integrations
   template:
     metadata:
       labels:
-        component: erxes-web
+        component: erxes-integrations
     spec:
       containers:
       - name: erxes
-        image: erxes/erxes:0.9.17
+        image: erxes/erxes-integrations:0.9.17
         ports:
-        - containerPort: 80
+        - containerPort: 3400
         envFrom:
         - configMapRef:
-            name: erxes-web-env
+            name: erxes-integrations-env
+        - secretRef:
+            name: erxes-api-env
         env:
-        - name: REACT_APP_API_URL
-          valueFrom:
-            configMapKeyRef:
-              name: erxes-common
-              key: ERXES_API_URL
-        - name: REACT_APP_API_SUBSCRIPTION_URL
-          valueFrom:
-            configMapKeyRef:
-              name: erxes-common
-              key: ERXES_API_SUBSCRIPTIONS_URL
-        - name: REACT_APP_CDN_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: erxes-common
-              key: ERXES_WEB_URL
-        - name: REACT_APP_INTEGRATIONS_API_URL
+        - name: PORT
+          value: "3400"
+        - name: DOMAIN
           valueFrom:
             configMapKeyRef:
               name: erxes-common
               key: ERXES_INTEGRATIONS_URL
+        - name: MAIN_APP_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_WEB_URL
+        - name: MAIN_API_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_API_URL

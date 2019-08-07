@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: erxes-integrations-env
+data:
+  NGINX_HOST: localhost
+  DEBUG: "erxes-integrations:*"

@@ -1,12 +1,4 @@
 resources:
 - erxes-common-configmap.yaml
 - erxes-common-env-secret.yaml
-
-vars:
-- name: MAIN_API_DOMAIN
-  objref:
-    apiVersion: v1
-    kind: ConfigMap
-    name: erxes-common
-  fieldref:
-    fieldpath: data.MAIN_API_DOMAIN
+- erxes-common-env-configmap.yaml

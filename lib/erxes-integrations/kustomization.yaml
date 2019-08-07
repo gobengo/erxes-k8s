@@ -1,0 +1,5 @@
+resources:
+- erxes-integrations-deployment.yaml
+- erxes-integrations-env-configmap.yaml
+- erxes-integrations-env-secret.yaml
+- erxes-integrations-service.yaml

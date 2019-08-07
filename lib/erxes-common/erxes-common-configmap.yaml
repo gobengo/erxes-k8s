@@ -3,6 +3,9 @@ kind: ConfigMap
 metadata:
   name: erxes-common
 data:
-  MAIN_API_DOMAIN: http://localhost:32402/api
-  MAIN_API_SUBSCRIPTIONS_URL: ws://localhost:32402/api/subscriptions
-  MAIN_APP_DOMAIN: http://localhost:32402
+  ERXES_API_URL: http://localhost:32402/api
+  ERXES_API_GRAPHQL_URL: http://localhost:32402/api/graphql
+  ERXES_API_SUBSCRIPTIONS_URL: ws://localhost:32402/api/subscriptions
+  ERXES_INTEGRATIONS_URL: http://localhost:32402/integrations
+  ERXES_WEB_URL: http://localhost:32402
+  ERXES_WIDGETS_URL: http://localhost:32402/widgets

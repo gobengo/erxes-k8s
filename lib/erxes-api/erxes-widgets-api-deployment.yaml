@@ -19,15 +19,17 @@ spec:
         - name: http
           containerPort: 3100
         envFrom:
-        - configMapRef:
-            name: erxes-widgets-api-env
         - secretRef:
             name: erxes-common-env
+        - configMapRef:
+            name: erxes-common-env
+        - configMapRef:
+            name: erxes-widgets-api-env
         env:
         - name: PORT
           value: "3100"
-        # - name: DOMAIN
-        #   valueFrom:
-        #     configMapKeyRef:
-        #       name: erxes-common
-        #       key: MAIN_API_DOMAIN
+        - name: WIDGET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_WIDGETS_URL

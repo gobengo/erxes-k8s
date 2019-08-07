@@ -19,13 +19,31 @@ spec:
         - name: http
           containerPort: 3300
         envFrom:
+        - secretRef:
+            name: erxes-common-env
+        - configMapRef:
+            name: erxes-common-env
         - configMapRef:
             name: erxes-api-env
-        - secretRef:
-            name: erxes-api-env
         env:
+        # Public URLs
         - name: DOMAIN
           valueFrom:
             configMapKeyRef:
               name: erxes-common
-              key: MAIN_API_DOMAIN
+              key: ERXES_API_URL
+        - name: MAIN_APP_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_WEB_URL
+        - name: WIDGETS_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_WIDGETS_URL
+        - name: INTEGRATIONS_API_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: erxes-common
+              key: ERXES_INTEGRATIONS_URL

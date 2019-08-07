@@ -4,9 +4,10 @@ metadata:
   name: erxes-api-env
 data:
   DEBUG: "erxes-api:*"
-  # MONGO_URL: # See erxes-api-env secret
   NODE_ENV: production
   PORT: "3300"
-  REDIS_HOST: redis-master
-  REDIS_PORT: "6379"
-  # REDIS_PASSWORD: # see erxes-api-env secret
+  # non public urls
+  WIDGETS_API_DOMAIN: http://erxes-widgets-api
+  CRONS_API_DOMAIN: http://erxes-crons
+  WORKERS_API_DOMAIN: http://erxes-workers
+  # LOGS_API_DOMAIN: http://erxes-logger
