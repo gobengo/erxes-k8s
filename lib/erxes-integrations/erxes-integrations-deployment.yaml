@@ -18,10 +18,12 @@ spec:
         ports:
         - containerPort: 3400
         envFrom:
+        - secretRef:
+            name: erxes-common-env
+        - configMapRef:
+            name: erxes-common-env
         - configMapRef:
             name: erxes-integrations-env
-        - secretRef:
-            name: erxes-api-env
         env:
         - name: PORT
           value: "3400"
