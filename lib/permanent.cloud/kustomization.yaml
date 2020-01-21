@@ -6,14 +6,19 @@ bases:
 - ../erxes-widgets
 - ../erxes-integrations
 
+resources:
+- pc-ingress.yaml
+
+configMapGenerator:
+- name: permanent.cloud
+  files:
+  - pc-kustomize-variables.yaml
+- name: parameters
+  literals:
+  - INGRESS_HTTP_PROTOCOL=https
+  - INGRESS_WS_PROTOCOL=wss
+
 vars:
-- name: ERXES_HOST
-  objref:
-    kind: ConfigMap
-    name: parameters
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.ERXES_HOST
 - name: INGRESS_HTTP_PROTOCOL
   objref:
     kind: ConfigMap
@@ -28,10 +33,3 @@ vars:
     apiVersion: v1
   fieldref:
     fieldpath: data.INGRESS_WS_PROTOCOL
-
-configMapGenerator:
-- name: parameters
-  literals:
-  - ERXES_HOST=localhost:32402
-  - INGRESS_HTTP_PROTOCOL=http
-  - INGRESS_WS_PROTOCOL=ws

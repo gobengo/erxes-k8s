@@ -1,0 +1,6 @@
+"@context": https://permanent.cloud/installer/v0
+kind: KustomizeVariableConfiguration
+variables:
+- type: SourcedVariable
+  name: ERXES_HOST
+  source: https://permanent.cloud/installer/v0/parameters/domain.name
