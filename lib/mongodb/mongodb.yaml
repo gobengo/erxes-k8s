@@ -44,8 +44,16 @@ spec:
         app: mongodb
         release: mongodb
     spec:
+      volumes:
+      - name: mongodb-data
+        persistentVolumeClaim:
+          claimName: mongodb-data
       containers:
-      - env:
+      - name: mongodb
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongodb-data
+        env:
         - name: MONGODB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -70,7 +78,6 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
-        name: mongodb
         ports:
         - containerPort: 27017
           name: mongodb
@@ -86,3 +93,17 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         resources: {}
+
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100M

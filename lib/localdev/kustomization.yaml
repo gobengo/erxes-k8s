@@ -1,0 +1,11 @@
+bases:
+- ../erxes-k8s
+
+resources:
+- localdev-ingress.yaml
+
+configMapGenerator:
+- name: parameters
+  behavior: merge
+  literals:
+  - ERXES_HOST=erxes.local

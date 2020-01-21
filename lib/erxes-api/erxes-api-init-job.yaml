@@ -1,14 +1,25 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: erxes-api-init-project
+  name: erxes-api-init
 spec:
   template:
     spec:
       containers:
-      - name: erxes-api-yarn-init-project
-        image: erxes/erxes-api:0.9.17
-        command: ["yarn",  "initProject"]
+      - name: erxes-api-yarn-init
+        image: erxes/erxes-api:0.12.0
+        command:
+        - /bin/bash
+        - -c
+        - |
+          # Set up initial erxes project and user.
+          echo "Initilaizing Erxes project."
+          yarn initProject;
+          # like `yarn loadPermission`, but specify mongo uri. There is now ay to do so with env variable.
+          # This loads reasaonble defaults for erxes permissions, which helps make the initial onboarding more useful
+          # when inviting teammates and choosing their permissions/role.
+          echo "Loading initial permission data."
+          mongorestore --uri=$MONGO_URL --db=erxes ./permissionData -vvvvvvvv
         envFrom:
         - secretRef:
             name: erxes-common-env

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: erxes
-        image: erxes/erxes:0.9.17
+        image: erxes/erxes:0.12.0
         ports:
         - containerPort: 80
         envFrom:
@@ -35,7 +35,7 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: erxes-common
-              key: ERXES_WEB_URL
+              key: ERXES_WIDGETS_URL
         - name: REACT_APP_INTEGRATIONS_API_URL
           valueFrom:
             configMapKeyRef:

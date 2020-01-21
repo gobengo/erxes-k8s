@@ -5,22 +5,15 @@ server {
         absolute_redirect off;
         proxy_intercept_errors off;
 
-        location / {
-                proxy_pass http://erxes-web/;
-                proxy_set_header Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-
-        location /widgets-api/ {
-                proxy_pass http://erxes-widgets-api/;
-                proxy_set_header Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-
         location /widgets/ {
                 proxy_pass http://erxes-widgets/;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location / {
+                proxy_pass http://erxes-web/;
                 proxy_set_header Host $http_host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
