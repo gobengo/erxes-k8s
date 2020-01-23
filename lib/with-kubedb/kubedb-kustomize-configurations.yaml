@@ -1,0 +1,15 @@
+nameReference:
+- version: v1
+  kind: ConfigMap
+  fieldSpecs:
+  - path: spec/init/scriptSource/configMap/name
+    kind: Postgres
+    group: kubedb.com
+    version: v1alpha1
+- version: v1
+  kind: ConfigMap
+  fieldSpecs:
+  - path: spec/init/scriptSource/configMap/name
+    kind: MongoDB
+    group: kubedb.com
+    version: v1alpha1

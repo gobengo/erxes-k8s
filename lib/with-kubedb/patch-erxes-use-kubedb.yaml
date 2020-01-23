@@ -1,3 +1,5 @@
+---
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -15,15 +17,22 @@ spec:
         - configMapRef:
             name: erxes-api-env
         env:
-        - name: MONGO_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: erxes-mongodb-auth
-              key: username
-        - name: MONGO_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: erxes-mongodb-auth
-              key: password
+        # user/pass for the *erxes* database, which is set in custom init script
+        # (not root user for admin database, which is set by kubedb secret, but we want erxes-api to use a diff database than mongo's "admin")
         - name: MONGO_URL
-          value: mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@$(MONGO_HOST)/erxes
+          value: mongodb://erxes-api:erxes-api@$(MONGO_HOST)/erxes
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: erxes-api-init
+spec:
+  template:
+    spec:
+      containers:
+      - name: erxes-api-yarn-init
+        env:
+        - name: MONGO_URL
+          value: mongodb://erxes-api:erxes-api@$(MONGO_HOST)/erxes

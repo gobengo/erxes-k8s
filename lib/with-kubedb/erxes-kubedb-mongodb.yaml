@@ -16,3 +16,7 @@ spec:
     resources:
       requests:
         storage: 100Mi
+  init:
+    scriptSource:
+      configMap:
+        name: erxes-mongodb-scripts

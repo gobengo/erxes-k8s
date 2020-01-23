@@ -13,3 +13,11 @@ vars:
     apiVersion: kubedb.com/v1alpha1
     kind: MongoDB
     name: erxes-mongodb
+
+configMapGenerator:
+- name: erxes-mongodb-scripts
+  files:
+  - init-erxes-mongodb.js
+
+configurations:
+- kubedb-kustomize-configurations.yaml
