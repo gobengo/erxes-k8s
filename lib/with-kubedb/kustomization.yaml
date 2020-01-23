@@ -1,0 +1,15 @@
+bases:
+- ../erxes-k8s
+
+resources:
+- erxes-kubedb-mongodb.yaml
+
+patchesStrategicMerge:
+- patch-erxes-use-kubedb.yaml
+
+vars:
+- name: MONGO_HOST
+  objref:
+    apiVersion: kubedb.com/v1alpha1
+    kind: MongoDB
+    name: erxes-mongodb

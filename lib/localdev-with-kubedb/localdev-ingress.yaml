@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: erxes-local
+spec:
+  rules:
+    - host: erxes.local
+      http:
+        paths:
+        - backend:
+            serviceName: erxes-router
+            servicePort: http

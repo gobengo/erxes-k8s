@@ -1,0 +1,18 @@
+---
+
+apiVersion: kubedb.com/v1alpha1
+kind: MongoDB
+metadata:
+  name: erxes-mongodb
+spec:
+  version: "3.4-v3"
+  podTemplate:
+    spec:
+      env:
+      - name: MONGO_INITDB_DATABASE
+        value: erxes
+  storageType: Durable
+  storage:
+    resources:
+      requests:
+        storage: 100Mi

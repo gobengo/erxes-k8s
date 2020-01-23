@@ -7,13 +7,13 @@ bases:
 - ../erxes-integrations
 
 vars:
-- name: ERXES_HOST
-  objref:
-    kind: ConfigMap
-    name: parameters
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.ERXES_HOST
+# - name: ERXES_HOST
+#   objref:
+#     kind: ConfigMap
+#     name: parameters
+#     apiVersion: v1
+#   fieldref:
+#     fieldpath: data.ERXES_HOST
 - name: INGRESS_HTTP_PROTOCOL
   objref:
     kind: ConfigMap

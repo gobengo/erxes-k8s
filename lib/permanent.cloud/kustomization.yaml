@@ -1,10 +1,5 @@
 bases:
-- ../erxes-common
-- ../erxes-api
-- ../erxes-web
-- ../erxes-router
-- ../erxes-widgets
-- ../erxes-integrations
+- ../with-kubedb
 
 resources:
 - pc-ingress.yaml
@@ -14,22 +9,7 @@ configMapGenerator:
   files:
   - pc-kustomize-variables.yaml
 - name: parameters
+  behavior: merge
   literals:
   - INGRESS_HTTP_PROTOCOL=https
   - INGRESS_WS_PROTOCOL=wss
-
-vars:
-- name: INGRESS_HTTP_PROTOCOL
-  objref:
-    kind: ConfigMap
-    name: parameters
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.INGRESS_HTTP_PROTOCOL
-- name: INGRESS_WS_PROTOCOL
-  objref:
-    kind: ConfigMap
-    name: parameters
-    apiVersion: v1
-  fieldref:
-    fieldpath: data.INGRESS_WS_PROTOCOL

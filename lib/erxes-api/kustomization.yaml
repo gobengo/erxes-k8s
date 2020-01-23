@@ -1,5 +1,5 @@
 bases:
-- ../mongodb
+# - ../mongodb
 - ../redis
 resources:
 - erxes-api-deployment.yaml

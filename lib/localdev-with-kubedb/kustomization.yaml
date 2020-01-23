@@ -1,0 +1,20 @@
+bases:
+- ../with-kubedb
+
+resources:
+- localdev-ingress.yaml
+
+configMapGenerator:
+- name: parameters
+  behavior: merge
+  literals:
+  - ERXES_HOST=erxes.local
+
+vars:
+- name: ERXES_HOST
+  objref:
+    kind: ConfigMap
+    name: parameters
+    apiVersion: v1
+  fieldref:
+    fieldpath: data.ERXES_HOST

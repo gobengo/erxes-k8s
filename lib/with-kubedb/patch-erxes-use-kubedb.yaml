@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: erxes-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: erxes
+        envFrom:
+        - secretRef:
+            name: erxes-common-env
+        - configMapRef:
+            name: erxes-common-env
+        - configMapRef:
+            name: erxes-api-env
+        env:
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: erxes-mongodb-auth
+              key: username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: erxes-mongodb-auth
+              key: password
+        - name: MONGO_URL
+          value: mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@$(MONGO_HOST)/erxes
