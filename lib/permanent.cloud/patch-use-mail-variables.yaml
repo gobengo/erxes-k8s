@@ -18,3 +18,5 @@ spec:
           value: $(MAIL_USER)
         - name: MAIL_PASS
           value: $(MAIL_PASS)
+        - name: DEFAULT_EMAIL_SERVICE
+          value: $(DEFAULT_EMAIL_SERVICE)
