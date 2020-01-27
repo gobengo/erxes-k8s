@@ -4,3 +4,32 @@ variables:
 - type: SourcedVariable
   name: ERXES_HOST
   source: https://permanent.cloud/installer/v0/parameters/domain.name
+
+- type: SourcedVariable
+  name: MAIL_SERVICE
+  source:
+    type: AppParameter
+    name: MAIL_SERVICE
+
+- type: SourcedVariable
+  name: MAIL_HOST
+  source:
+    type: AppParameter
+    name: MAIL_HOST
+
+- type: SourcedVariable
+  name: MAIL_PORT
+  source:
+    type: AppParameter
+    name: MAIL_PORT
+- type: SourcedVariable
+  name: MAIL_USER
+  source:
+    type: AppParameter
+    name: MAIL_USER
+
+- type: SourcedVariable
+  name: MAIL_PASS
+  source:
+    type: AppParameter
+    name: MAIL_PASS

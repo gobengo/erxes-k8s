@@ -4,6 +4,9 @@ bases:
 resources:
 - pc-ingress.yaml
 
+patchesStrategicMerge:
+- patch-use-mail-variables.yaml
+
 configMapGenerator:
 - name: permanent.cloud
   files:

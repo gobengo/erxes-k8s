@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: erxes-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: erxes-api
+        env:
+        - name: MAIL_SERVICE
+          value: $(MAIL_SERVICE)
+        - name: MAIL_HOST
+          value: $(MAIL_HOST)
+        - name: MAIL_PORT
+          value: $(MAIL_PORT)
+        - name: MAIL_USER
+          value: $(MAIL_USER)
+        - name: MAIL_PASS
+          value: $(MAIL_PASS)

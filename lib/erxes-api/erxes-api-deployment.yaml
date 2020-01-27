@@ -13,7 +13,7 @@ spec:
         component: erxes-api
     spec:
       containers:
-      - name: erxes
+      - name: erxes-api
         image: erxes/erxes-api:0.12.0
         ports:
         - name: http
