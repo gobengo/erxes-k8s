@@ -1,0 +1,9 @@
+resources:
+- erxes-engages-deployment.yaml
+- erxes-engages-env-configmap.yaml
+- erxes-engages-service.yaml
+
+secretGenerator:
+- name: erxes-engages-env
+  literals:
+  - MONGO_URL=mongodb://mongodb/erxes_engages

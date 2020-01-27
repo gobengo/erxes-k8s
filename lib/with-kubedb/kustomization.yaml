@@ -21,3 +21,13 @@ configMapGenerator:
 
 configurations:
 - kubedb-kustomize-configurations.yaml
+
+secretGenerator:
+- name: erxes-engages-env
+  behavior: merge
+  literals:
+  - MONGO_URL=mongodb://erxes-engages:erxes-engages@$(MONGO_HOST)/erxes_engages
+- name: erxes-integrations-env
+  behavior: merge
+  literals:
+  - MONGO_URL=mongodb://erxes-integrations:erxes-integrations@$(MONGO_HOST)/erxes_integrations

@@ -1,5 +1,9 @@
 resources:
 - erxes-integrations-deployment.yaml
 - erxes-integrations-env-configmap.yaml
-- erxes-integrations-env-secret.yaml
 - erxes-integrations-service.yaml
+
+secretGenerator:
+- name: erxes-integrations-env
+  literals:
+  - MONGO_URL=mongodb://mongodb/erxes_integrations

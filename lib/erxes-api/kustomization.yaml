@@ -9,7 +9,6 @@ resources:
 - erxes-crons-deployment.yaml
 - erxes-crons-env-configmap.yaml
 - erxes-crons-service.yaml
-- erxes-engages-deployment.yaml
 - erxes-workers-deployment.yaml
 - erxes-workers-env-configmap.yaml
 - erxes-workers-service.yaml

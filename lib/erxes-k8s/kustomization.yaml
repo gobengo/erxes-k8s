@@ -1,6 +1,7 @@
 bases:
 - ../erxes-common
 - ../erxes-api
+- ../erxes-engages
 - ../erxes-web
 - ../erxes-router
 - ../erxes-widgets
