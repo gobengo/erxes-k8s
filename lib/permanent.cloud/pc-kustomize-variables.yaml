@@ -39,3 +39,9 @@ variables:
   source:
     type: AppParameter
     name: DEFAULT_EMAIL_SERVICE
+
+- type: SourcedVariable
+  name: COMPANY_EMAIL_FROM
+  source:
+    type: AppParameter
+    name: COMPANY_EMAIL_FROM
